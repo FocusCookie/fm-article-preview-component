@@ -57,12 +57,14 @@ body {
 }
 
 .card {
+  overflow: hidden;
   background: var(--color-white);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-1);
 }
 
 .card__headerimage {
+  display: block;
   width: 100%;
   max-height: 200px;
   object-fit: cover;
@@ -89,23 +91,31 @@ body {
 }
 
 .article__footer {
+  box-sizing: content-box;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
-  padding: 0 var(--space-6) var(--space-3) var(--space-6);
+  padding: var(--space-3) var(--space-6) var(--space-3) var(--space-6);
   font-weight: 200;
   font-size: 13px;
+  height: 40px;
   line-height: 20px;
   letter-spacing: 0.121875px;
   color: var(--color-primary-600);
+
+  transition: background 0.2s ease;
 }
 
 .article__footer__avatar {
   border-radius: var(--avater-dimeter);
   height: var(--avater-dimeter);
   width: var(--avater-dimeter);
+}
+
+.article__footer_author {
+  margin-right: auto;
 }
 
 .share {
@@ -117,6 +127,22 @@ body {
   padding-bottom: 2px;
   height: var(--share-dimeter);
   width: var(--share-dimeter);
+}
+.share:hover {
+  background: var(--color-primary-500);
+}
+
+.share:hover .share__icon path {
+  fill: var(--color-white);
+}
+
+.share__text {
+  font-weight: 200;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-right: 5px;
 }
 
 /* || Typography */
@@ -132,8 +158,23 @@ body {
   color: var(--color-primary-400);
 }
 
-/* || Header and Main Navigation */
 /* || Helper */
 .justify-start {
-  margin-right: auto;
+  margin-left: auto;
+}
+
+.hide {
+  display: none;
+}
+
+.padding-x32-y16 {
+  padding: 16px 32px;
+}
+
+.bg-primary-400 {
+  background: var(--color-primary-400);
+}
+
+.gap-16 {
+  gap: 16px;
 }
