@@ -1,42 +1,47 @@
-const removeClassFromElements = function (elements, className) {
-  elements.forEach((el) => {
-    el.classList.remove(className);
-  });
-};
-
-const addClasstToElements = function (elements, className) {
-  elements.forEach((el) => {
-    el.classList.add(className);
-  });
-};
-
 const articleFooter = document.querySelector(".article__footer");
 const articleFooterAvatar = document.querySelector(".article__footer__avatar");
-const artivleFooterAuthor = document.querySelector(".article__footer_author");
-const shareText = document.querySelector(".share__text");
-const partners = document.querySelectorAll(".share__partnerLogo");
+const articleFooterAuthor = document.querySelector(".article__footer_author");
+const shareItems = document.querySelector(".share__items");
 const shareBtn = document.querySelector(".share");
 
 let showShareMenue = false;
+let windowWidth;
+
+window.addEventListener("resize", function () {
+  windowWidth = window.innerWidth;
+});
 
 shareBtn.addEventListener("click", () => {
   showShareMenue = !showShareMenue;
 
-  if (showShareMenue) {
-    articleFooterAvatar.classList.add("hide");
-    artivleFooterAuthor.classList.add("hide");
+  if (windowWidth < 768) {
+    if (showShareMenue) {
+      articleFooterAvatar.classList.add("hide");
+      articleFooterAuthor.classList.add("hide");
 
-    articleFooter.classList.add("bg-primary-400", "gap-16");
+      articleFooter.classList.add("bg-primary-400", "gap-16");
 
-    shareText.classList.remove("hide");
-    removeClassFromElements(partners, "hide");
+      shareItems.classList.remove("hide");
+    } else {
+      articleFooterAvatar.classList.remove("hide");
+      articleFooterAuthor.classList.remove("hide");
+
+      articleFooter.classList.remove("bg-primary-400", "gap-16");
+
+      shareItems.classList.add("hide");
+    }
   } else {
-    articleFooterAvatar.classList.remove("hide");
-    artivleFooterAuthor.classList.remove("hide");
+    if (showShareMenue) {
+      shareItems.classList.add("display-absolute-flex");
 
-    articleFooter.classList.remove("bg-primary-400", "gap-16");
+      shareItems.style.left = shareBtn.offsetLeft - 124 + 16 + "px";
+      shareItems.style.top = shareBtn.offsetTop - 83 + "px";
 
-    shareText.classList.add("hide");
-    addClasstToElements(partners, "hide");
+      shareItems.classList.remove("hide");
+    } else {
+      shareItems.classList.remove("display-absolute-flex");
+
+      shareItems.classList.add("hide");
+    }
   }
 });
